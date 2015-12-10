@@ -5,8 +5,10 @@ var game_file_list = [
 	"libs/modules/egret/egret.js",
 	"libs/modules/egret/egret.native.js",
 	"libs/modules/res/res.js",
-	"bin-debug/Main.js",
 	"bin-debug/GameContainer.js",
+	"bin-debug/GameUtil.js",
+	"bin-debug/Main.js",
+	"bin-debug/mc/Hook.js",
 	//----auto game_file_list end----
 ];
 
@@ -37,8 +39,8 @@ egret_native.egretStart = function () {
 		entryClassName: "Main",
 		frameRate: 30,
 		scaleMode: "showAll",
-		contentWidth: 480,
-		contentHeight: 800,
+		contentWidth: 800,
+		contentHeight: 480,
 		showPaintRect: false,
 		showFPS: false,
 		fpsStyles: "x:0,y:0,size:30,textColor:0x00c200,bgAlpha:0.9",

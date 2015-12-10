@@ -1,22 +1,30 @@
 module goldman {
-    /**
-     * Ö÷ÓÎÏ·ÈİÆ÷
-     */
-    export class GameContainer extends egret.DisplayObjectContainer {
-        public constructor() {
-            super();
-            this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-        }
+	/**
+	 * ä¸»æ¸¸æˆå®¹å™¨
+	 */
+	export class GameContainer extends egret.DisplayObjectContainer {
+		/**stageå®½*/
+		private stageW:number;
+		/**stageé«˜*/
+		private stageH:number;
+		public constructor() {
+			super();
+			this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+		}
 
-        /**³õÊ¼»¯*/
-        private onAddToStage(event:egret.Event) {
-            this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-            this.createGameScene();
-        }
+		/**åˆå§‹åŒ–*/
+		private onAddToStage(event:egret.Event) {
+			this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+			this.stageW = this.stage.stageWidth;
+			this.stageH = this.stage.stageHeight;
+			this.createGameScene();
+		}
 
-        /**´´½¨ÓÎÏ·³¡¾°*/
-        private createGameScene():void {
-            console.log("start");
-        }
-    }
+		/**åˆ›å»ºæ¸¸æˆåœºæ™¯*/
+		private createGameScene():void {
+			var hookManager:HookManager = new HookManager();
+			this.addChild(hookManager);
+			hookManager.x = this.stageW / 2;
+		}
+	}
 }

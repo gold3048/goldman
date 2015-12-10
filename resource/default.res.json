@@ -1,12 +1,12 @@
 {
   "groups": [
-    {"name":"preload","keys":"img"}
+    {"name":"preload","keys":"hook"}
   ],
   "resources": [
     {
-      "name": "img",
+      "name": "hook",
       "type": "image",
-      "url": "assets/image.jpg"
+      "url": "assets/hook.png"
     }
   ]
 }
