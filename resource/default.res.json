@@ -1,6 +1,9 @@
 {
   "groups": [
-    {"name":"preload","keys":"hook"}
+    {
+      "name": "preload",
+      "keys": "hook"
+    }
   ],
   "resources": [
     {

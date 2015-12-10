@@ -2,11 +2,13 @@ module goldman {
 	/**
 	 * 主游戏容器
 	 */
-	export class GameContainer extends egret.DisplayObjectContainer {
+	export class GameContainer extends egret.Sprite {
 		/**stage宽*/
 		private stageW:number;
 		/**stage高*/
 		private stageH:number;
+
+		private hookManager:HookManager;
 		public constructor() {
 			super();
 			this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
@@ -22,9 +24,14 @@ module goldman {
 
 		/**创建游戏场景*/
 		private createGameScene():void {
-			var hookManager:HookManager = new HookManager();
+			hookManager = new HookManager();
 			this.addChild(hookManager);
 			hookManager.x = this.stageW / 2;
+			this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickStage, this.stage)
+		}
+
+		private clickStage(e:egret.TouchEvent):void {
+			hookManager.startGo();
 		}
 	}
 }
