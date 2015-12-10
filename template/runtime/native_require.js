@@ -8,7 +8,9 @@ var game_file_list = [
 	"bin-debug/GameContainer.js",
 	"bin-debug/GameUtil.js",
 	"bin-debug/Main.js",
-	"bin-debug/mc/Hook.js",
+	"bin-debug/mc/Gold.js",
+	"bin-debug/mc/GoldManager.js",
+	"bin-debug/mc/HookManager.js",
 	//----auto game_file_list end----
 ];
 

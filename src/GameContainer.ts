@@ -9,6 +9,7 @@ module goldman {
 		private stageH:number;
 
 		private hookManager:HookManager;
+		private goldManager:GoldManager;
 		public constructor() {
 			super();
 			this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
@@ -24,14 +25,17 @@ module goldman {
 
 		/**创建游戏场景*/
 		private createGameScene():void {
-			hookManager = new HookManager();
-			this.addChild(hookManager);
-			hookManager.x = this.stageW / 2;
-			this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickStage, this.stage)
+			this.hookManager = new HookManager();
+			this.addChild(this.hookManager);
+			this.hookManager.x = this.stageW / 2;
+			this.goldManager = new GoldManager();
+			this.addChild(this.goldManager);
+			this.goldManager.createGolds();
+			this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickStage, this);
 		}
 
 		private clickStage(e:egret.TouchEvent):void {
-			hookManager.startGo();
+			this.hookManager.startGo();
 		}
 	}
 }

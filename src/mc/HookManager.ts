@@ -8,10 +8,12 @@ class HookManager extends egret.Sprite {
 	private line:egret.Shape;
 	private hookBmp:egret.Bitmap;
 	private hook:egret.Sprite;
-	private BASE_ROTATION = 60;
-	private BASE_LINE_HEIGHT = 50;
-	private lineHeight = 50;
-	private direction:egret.String;
+	private BASE_ROTATION:number = 60;//钩子默认旋转角度
+	private BASE_LINE_HEIGHT:number = 50;//绳子默认长度
+	private lineHeight:number = 50;//绳子当前长度
+	private direction:string;//当前方向
+	private GO_V:number = 5;
+	private BACK_V:number = 10;
 
 	private isHitBorder:boolean = false; //钩子是否碰到边缘
 
@@ -69,14 +71,15 @@ class HookManager extends egret.Sprite {
 	}
 
 	public startGo():void {
+		console.log("####");
 		this.stopRotate();
 		this.hook.addEventListener(egret.Event.ENTER_FRAME, this.onGoEnterFrame, this);
 	}
 
 	private onGoEnterFrame(e:egret.Event):void {
-		var vHeight = 5;
+		var vHeight = this.GO_V;
 		if (this.isHitBorder) {
-			vHeight = -5;
+			vHeight = -this.BACK_V;
 		}
 		this.lineHeight += vHeight;
 		this.line.graphics.clear();
