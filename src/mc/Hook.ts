@@ -88,6 +88,7 @@ class HookManager extends egret.Sprite {
 
 		if (this.lineHeight < this.BASE_LINE_HEIGHT) {
 			this.stopGo();
+			this.isHitBorder = false;
 		}
 
 		if (!this.isHitBorder) {//判断是否出界
