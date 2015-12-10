@@ -38,6 +38,10 @@ class HookManager extends egret.Sprite {
 		this.hook.addEventListener(egret.Event.ENTER_FRAME, this.onEnterFrame, this);
 	}
 
+	public stopRotate():void {
+		this.hook.removeEventListener(egret.Event.ENTER_FRAME, this.onEnterFrame, this);
+	}
+
 	private onEnterFrame(e:egret.Event):void {
 		if (this.direction == "left") {
 			this.hook.rotation++;
