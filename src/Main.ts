@@ -6,18 +6,22 @@ class Main extends egret.Sprite {
     }
 
     private onAddToStage(event:egret.Event){
-        //³õÊ¼»¯Resource×ÊÔ´¼ÓÔØ¿â
+        //åˆå§‹åŒ–Resourceèµ„æºåŠ è½½åº“
         RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE,this.onConfigComplete,this);
         RES.loadConfig("resource/default.res.json","resource/");
     }
 
-    /**ÅäÖÃÎÄ¼ş¼ÓÔØÍê³É,¿ªÊ¼Ô¤¼ÓÔØpreload×ÊÔ´×é¡£*/
+    /**
+     * é…ç½®æ–‡ä»¶åŠ è½½å®Œæˆ,å¼€å§‹é¢„åŠ è½½preloadèµ„æºç»„ã€‚
+     */
     private onConfigComplete(event:RES.ResourceEvent):void{
         RES.removeEventListener(RES.ResourceEvent.CONFIG_COMPLETE,this.onConfigComplete,this);
         RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE,this.onResourceLoadComplete,this);
         RES.loadGroup("preload");
     }
-    /** preload×ÊÔ´×é¼ÓÔØÍê³É*/
+    /**
+     * preloadèµ„æºç»„åŠ è½½å®Œæˆ
+     */
     private onResourceLoadComplete(event:RES.ResourceEvent):void {
         if(event.groupName=="preload"){
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE,this.onResourceLoadComplete,this);
