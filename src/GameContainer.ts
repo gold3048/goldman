@@ -45,7 +45,7 @@ module goldman {
 		private onHookManagerEventHandler(e:egret.Event):void {
 			var data:any = (e.data);
 			switch (data.type) {
-				case HookManager.RESET_HOOK_EVENT:
+				case HookManager.GO_COMPLETE_EVENT:
 					this.resetHook();
 					break;
 				case HookManager.UPDATE_HOOK_POSITION_EVENT:
@@ -59,6 +59,7 @@ module goldman {
 		}
 
 		private resetHook():void {
+			console.log("resetHook");
 			if (this.goldManager.currHookGold) {
 				this.hookManager.isHitObj = false;
 				this.goldManager.removeCurrentGold();
@@ -81,6 +82,7 @@ module goldman {
 				var isHit:boolean = GameUtil.hitTestObjByParentObj(hookBmp, gold, this);//检测钩子和物体是否相撞
 				if (isHit) {
 					this.hookManager.isHitObj = true;
+					this.hookManager.backV = gold.backV;
 					this.goldManager.currHookGold = gold;
 					break;
 				}

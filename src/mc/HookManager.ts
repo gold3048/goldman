@@ -14,7 +14,8 @@ class HookManager extends egret.Sprite {
 	private lineHeight:number = 50;//绳子当前长度
 	private direction:string;//当前方向
 	private GO_V:number = 5;
-	private BACK_V:number = 10;
+	private BACK_V_DEFAULT:number = 10;
+	public backV:number = 10;
 
 	private isHitBorder:boolean = false;//钩子是否碰到边缘
 	public isHitObj:boolean = false;//钩子是否碰到物体
@@ -22,7 +23,7 @@ class HookManager extends egret.Sprite {
 
 	public static HOOK_MANAGER_EVENT:string = 'HOOK_MANAGER_EVENT';
 
-	public static RESET_HOOK_EVENT:string = 'RESET_HOOK_EVENT';
+	public static GO_COMPLETE_EVENT:string = 'GO_COMPLETE_EVENT';
 	public static UPDATE_HOOK_POSITION_EVENT:string = 'UPDATE_HOOK_POSITION_EVENT';
 
 	public constructor() {
@@ -49,16 +50,11 @@ class HookManager extends egret.Sprite {
 		this.hook.addChild(this.line);
 
 		this.hookBmp = goldman.createBitmapByName("hook");
-		this.shape = new egret.Shape();
-		this.shape.graphics.beginFill(0x00ff00);
-		this.shape.graphics.drawRect(0, 0, this.hookBmp.width, this.hookBmp.height);
-		this.shape.graphics.endFill();
-		this.shape.x = -this.hookBmp.width / 2;
-		this.shape.y = 50;
-		this.hook.addChild(this.shape);
 		this.hook.addChild(this.hookBmp);
 		this.hookBmp.x = -this.hookBmp.width / 2;
 		this.hookBmp.y = 50;
+
+		this.backV = this.BACK_V_DEFAULT;
 
 		this.addChild(this.hook);
 	}
@@ -96,11 +92,8 @@ class HookManager extends egret.Sprite {
 
 	private onUpdateGo():void {
 		var vHeight = this.GO_V;
-		if (this.isHitBorder) {
-			vHeight = -this.BACK_V;
-		}
-		if (this.isHitObj) {
-			vHeight = -this.GO_V;//todo 返回速度根据物体的重量
+		if (this.isHitBorder || this.isHitObj) {
+			vHeight = -this.backV;
 		}
 		this.lineHeight += vHeight;
 		this.line.graphics.clear();
@@ -109,7 +102,6 @@ class HookManager extends egret.Sprite {
 		this.line.graphics.lineTo(0, this.lineHeight);
 		this.line.graphics.endFill();
 		this.hookBmp.y += vHeight;
-		this.shape.y += vHeight;
 
 		this.dispatchEventWith(HookManager.HOOK_MANAGER_EVENT, false, {
 			type: HookManager.UPDATE_HOOK_POSITION_EVENT,
@@ -118,9 +110,7 @@ class HookManager extends egret.Sprite {
 		});
 
 		if (this.lineHeight < this.BASE_LINE_HEIGHT) {
-			this.stopGo();
-			this.isHitBorder = false;
-			this.dispatchEventWith(HookManager.HOOK_MANAGER_EVENT, false, {type: HookManager.RESET_HOOK_EVENT});
+			this.goComplete();
 		}
 
 		if (!this.isHitBorder) {//判断是否出界
@@ -139,9 +129,19 @@ class HookManager extends egret.Sprite {
 		}
 	}
 
-	public stopGo():void {
+	public goComplete():void {
+		console.log("Stop");
 		this.isGo = false;
+		this.isHitBorder = false;
+		this.backV = this.BACK_V_DEFAULT;
 		this.startRotate();
+		this.dispatchEventWith(HookManager.HOOK_MANAGER_EVENT, false, {type: HookManager.GO_COMPLETE_EVENT});
+	}
+
+	private updateHook():void {
+
+
+
 	}
 
 }
