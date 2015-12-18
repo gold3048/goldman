@@ -46,7 +46,7 @@ module goldman {
 			var data:any = (e.data);
 			switch (data.type) {
 				case HookManager.GO_COMPLETE_EVENT:
-					this.resetHook();
+					this.onHookGoComplete();
 					break;
 				case HookManager.UPDATE_HOOK_POSITION_EVENT:
 					if (this.hookManager.isHitObj) {
@@ -58,7 +58,7 @@ module goldman {
 			}
 		}
 
-		private resetHook():void {
+		private onHookGoComplete():void {
 			if (this.goldManager.currHookGold) {
 				this.hookManager.isHitObj = false;
 				this.goldManager.removeCurrentGold();
