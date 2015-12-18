@@ -122,6 +122,7 @@ class HookManager extends egret.Sprite {
 		console.log("Stop");
 		this.updateHook("reset");
 		this.isGo = false;
+		this.isHitObj = false;
 		this.isHitBorder = false;
 		this.backV = this.BACK_V_DEFAULT;
 		this.startRotate();

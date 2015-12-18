@@ -60,7 +60,6 @@ module goldman {
 
 		private onHookGoComplete():void {
 			if (this.goldManager.currHookGold) {
-				this.hookManager.isHitObj = false;
 				this.goldManager.removeCurrentGold();
 			}
 		}
