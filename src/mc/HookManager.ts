@@ -12,9 +12,10 @@ class HookManager extends egret.Sprite {
 	private BASE_LINE_HEIGHT:number = 50;//绳子默认长度
 	private lineHeight:number = 50;//绳子当前长度
 	private direction:string;//当前方向
-	private GO_V:number = 5;
-	private BACK_V_DEFAULT:number = 10;
-	public backV:number = 10;
+	private GO_V_DEFAULT:number = 5;//钩子出击速度
+	public goV:number = 10;//钩子出击当前速度
+	private BACK_V_DEFAULT:number = 10;//钩子缩回速度
+	public backV:number = 10;//钩子缩回当前速度
 
 	private isHitBorder:boolean = false;//钩子是否碰到边缘
 	public isHitObj:boolean = false;//钩子是否碰到物体
@@ -47,6 +48,7 @@ class HookManager extends egret.Sprite {
 		this.hook.addChild(this.hookBmp);
 		this.updateHook("reset");
 
+		this.goV = this.GO_V_DEFAULT;
 		this.backV = this.BACK_V_DEFAULT;
 
 		this.addChild(this.hook);
@@ -84,7 +86,7 @@ class HookManager extends egret.Sprite {
 	}
 
 	private onUpdateGo():void {
-		var vHeight = this.GO_V;
+		var vHeight = this.goV;
 		if (this.isHitBorder || this.isHitObj) {
 			vHeight = -this.backV;
 		}
