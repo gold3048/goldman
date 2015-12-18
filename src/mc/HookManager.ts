@@ -7,7 +7,6 @@ class HookManager extends egret.Sprite {
 
 	private line:egret.Shape;
 	private hookBmp:egret.Bitmap;
-	private shape:egret.Shape
 	private hook:egret.Sprite;
 	private BASE_ROTATION:number = 60;//钩子默认旋转角度
 	private BASE_LINE_HEIGHT:number = 50;//绳子默认长度
@@ -43,16 +42,10 @@ class HookManager extends egret.Sprite {
 		this.hook = new egret.Sprite();
 
 		this.line = new egret.Shape();
-		this.line.graphics.lineStyle(2, 0x000000);
-		this.line.graphics.moveTo(0, 0);
-		this.line.graphics.lineTo(0, this.lineHeight);
-		this.line.graphics.endFill();
 		this.hook.addChild(this.line);
-
 		this.hookBmp = goldman.createBitmapByName("hook");
 		this.hook.addChild(this.hookBmp);
-		this.hookBmp.x = -this.hookBmp.width / 2;
-		this.hookBmp.y = 50;
+		this.updateHook("reset");
 
 		this.backV = this.BACK_V_DEFAULT;
 
@@ -95,13 +88,7 @@ class HookManager extends egret.Sprite {
 		if (this.isHitBorder || this.isHitObj) {
 			vHeight = -this.backV;
 		}
-		this.lineHeight += vHeight;
-		this.line.graphics.clear();
-		this.line.graphics.lineStyle(2, 0x000000);
-		this.line.graphics.moveTo(0, 0);
-		this.line.graphics.lineTo(0, this.lineHeight);
-		this.line.graphics.endFill();
-		this.hookBmp.y += vHeight;
+		this.updateHook("v", vHeight);
 
 		this.dispatchEventWith(HookManager.HOOK_MANAGER_EVENT, false, {
 			type: HookManager.UPDATE_HOOK_POSITION_EVENT,
@@ -131,6 +118,7 @@ class HookManager extends egret.Sprite {
 
 	public goComplete():void {
 		console.log("Stop");
+		this.updateHook("reset");
 		this.isGo = false;
 		this.isHitBorder = false;
 		this.backV = this.BACK_V_DEFAULT;
@@ -138,10 +126,19 @@ class HookManager extends egret.Sprite {
 		this.dispatchEventWith(HookManager.HOOK_MANAGER_EVENT, false, {type: HookManager.GO_COMPLETE_EVENT});
 	}
 
-	private updateHook():void {
-
-
-
+	private updateHook(mode, v:number = 0):void {
+		if (mode == "reset") {
+			this.lineHeight = 50;
+			this.hookBmp.y = 50;
+		} else if(mode == "v") {
+			this.hookBmp.y += v;
+		}
+		this.lineHeight += v;
+		this.line.graphics.clear();
+		this.line.graphics.lineStyle(2, 0x000000);
+		this.line.graphics.moveTo(0, 0);
+		this.line.graphics.lineTo(0, this.lineHeight);
+		this.line.graphics.endFill();
+		this.hookBmp.x = -this.hookBmp.width / 2;
 	}
-
 }

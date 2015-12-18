@@ -59,7 +59,6 @@ module goldman {
 		}
 
 		private resetHook():void {
-			console.log("resetHook");
 			if (this.goldManager.currHookGold) {
 				this.hookManager.isHitObj = false;
 				this.goldManager.removeCurrentGold();
