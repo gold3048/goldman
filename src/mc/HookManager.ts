@@ -7,6 +7,7 @@ class HookManager extends egret.Sprite {
 
 	private line:egret.Shape;
 	private hookBmp:egret.Bitmap;
+	private hookBmpBack:egret.Bitmap;
 	private hook:egret.Sprite;
 	private BASE_ROTATION:number = 60;//钩子默认旋转角度
 	private BASE_LINE_HEIGHT:number = 50;//绳子默认长度
@@ -46,6 +47,9 @@ class HookManager extends egret.Sprite {
 		this.hook.addChild(this.line);
 		this.hookBmp = goldman.createBitmapByName("hook");
 		this.hook.addChild(this.hookBmp);
+		this.hookBmpBack = goldman.createBitmapByName("hookback");
+		this.hookBmpBack.visible = false;
+		this.hook.addChild(this.hookBmpBack);
 		this.redrawHook("reset");
 
 		this.goV = this.GO_V_DEFAULT;
@@ -112,10 +116,14 @@ class HookManager extends egret.Sprite {
 	public hitObject(v:number):void {
 		this.isBack = true;
 		this.backV = v;
+		this.hookBmp.visible = false;
+		this.hookBmpBack.visible = true;
 	}
 
 	public goComplete():void {
-		console.log("Stop");
+		console.log("stop");
+		this.hookBmp.visible = true;
+		this.hookBmpBack.visible = false;
 		this.redrawHook("reset");
 		this.isGo = false;
 		this.isBack = false;
@@ -124,12 +132,14 @@ class HookManager extends egret.Sprite {
 		this.dispatchEventWith(HookManager.HOOK_MANAGER_EVENT, false, {type: HookManager.GO_COMPLETE_EVENT});
 	}
 
-	private redrawHook(mode, v:number = 0):void {
+	private redrawHook(mode:string, v:number = 0):void {
 		if (mode == "reset") {
 			this.lineHeight = 50;
 			this.hookBmp.y = 50;
+			this.hookBmpBack.y = 50;
 		} else if (mode == "v") {
 			this.hookBmp.y += v;
+			this.hookBmpBack.y += v;
 		}
 		this.lineHeight += v;
 		this.line.graphics.clear();
@@ -138,5 +148,6 @@ class HookManager extends egret.Sprite {
 		this.line.graphics.lineTo(0, this.lineHeight);
 		this.line.graphics.endFill();
 		this.hookBmp.x = -this.hookBmp.width / 2;
+		this.hookBmpBack.x = -this.hookBmpBack.width / 2;
 	}
 }

@@ -26,15 +26,14 @@ module goldman {
 
 		/**创建游戏场景*/
 		private createGameScene():void {
+			this.goldManager = new GoldManager();
+			this.addChild(this.goldManager);
+			this.goldManager.createGolds();
 			this.hookManager = new HookManager();
 			this.hookManager.addEventListener(HookManager.HOOK_MANAGER_EVENT, this.onHookManagerEventHandler, this);
 			this.addChild(this.hookManager);
 			this.hookManager.x = this.stageW / 2;
-			this.goldManager = new GoldManager();
-			this.addChild(this.goldManager);
-			this.goldManager.createGolds();
 			this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickStage, this);
-
 			this.addEventListener(egret.Event.ENTER_FRAME, this.onGameEnterFrame, this);
 		}
 
@@ -65,7 +64,7 @@ module goldman {
 		}
 
 		private updateObjPosition(hook:egret.Sprite, hookBmp:egret.Bitmap):void {
-			var p:egret.Point = hook.localToGlobal(hookBmp.x - hookBmp.width / 2, hookBmp.y + hookBmp.height);
+			var p:egret.Point = hook.localToGlobal(hookBmp.x - hookBmp.width / 2, hookBmp.y + hookBmp.height * 0.45);
 			var gloablP:egret.Point = this.globalToLocal(p.x, p.y);
 			this.goldManager.setCurrHookGoldPosition(gloablP, hook.rotation)
 		}

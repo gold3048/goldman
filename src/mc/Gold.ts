@@ -14,7 +14,7 @@ class Gold extends egret.Sprite {
 	public constructor() {
 		super();
 		this.money = Math.floor(10 + Math.random() * 10);
-		this.backV = Math.floor(10 + Math.random() * 15);
+		this.backV = Math.floor(2 + Math.random() * 0);
 		this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
 	}
 

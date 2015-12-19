@@ -2,7 +2,7 @@
   "groups": [
     {
       "name": "preload",
-      "keys": "hook,gold1"
+      "keys": "hook,hookback,gold1"
     }
   ],
   "resources": [
@@ -10,6 +10,11 @@
       "name": "hook",
       "type": "image",
       "url": "assets/hook.png"
+    },
+    {
+      "name": "hookback",
+      "type": "image",
+      "url": "assets/hookback.png"
     },
     {
       "name": "gold1",
