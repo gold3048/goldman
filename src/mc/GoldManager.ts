@@ -32,6 +32,12 @@ class GoldManager extends egret.Sprite {
 		return this._goldsArr;
 	}
 
+	public setCurrHookGoldPosition(gloablP:egret.Point, rotation:number):void {
+		this.currHookGold.x = gloablP.x;
+		this.currHookGold.y = gloablP.y;
+		this.currHookGold.rotation = rotation;
+	}
+
 	public removeCurrentGold():Gold {
 		var currHookGold:Gold = this._goldsArr.splice(this._goldsArr.indexOf(this.currHookGold), 1)[0];
 		this.removeChild(currHookGold);

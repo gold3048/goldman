@@ -65,12 +65,9 @@ module goldman {
 		}
 
 		private updateObjPosition(hook:egret.Sprite, hookBmp:egret.Bitmap):void {
-			//var rect:egret.Rectangle = hookBmp.getTransformedBounds(this);
 			var p:egret.Point = hook.localToGlobal(hookBmp.x - hookBmp.width / 2, hookBmp.y + hookBmp.height);
 			var gloablP:egret.Point = this.globalToLocal(p.x, p.y);
-			this.goldManager.currHookGold.x = gloablP.x;
-			this.goldManager.currHookGold.y = gloablP.y;
-			this.goldManager.currHookGold.rotation = hook.rotation;
+			this.goldManager.setCurrHookGoldPosition(gloablP, hook.rotation)
 		}
 
 		private checkHookHitObject(hook:egret.Sprite, hookBmp:egret.Bitmap):void {
