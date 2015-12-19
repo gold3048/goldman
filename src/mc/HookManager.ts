@@ -13,12 +13,12 @@ class HookManager extends egret.Sprite {
 	private lineHeight:number = 50;//绳子当前长度
 	private direction:string;//当前方向
 	private GO_V_DEFAULT:number = 5;//钩子出击速度
-	public goV:number = 10;//钩子出击当前速度
+	private goV:number = 10;//钩子出击当前速度
 	private BACK_V_DEFAULT:number = 10;//钩子缩回速度
-	public backV:number = 10;//钩子缩回当前速度
+	private backV:number = 10;//钩子缩回当前速度
 
 	private isHitBorder:boolean = false;//钩子是否碰到边缘
-	public isHitObj:boolean = false;//钩子是否碰到物体
+	private isHitObj:boolean = false;//钩子是否碰到物体
 	private isGo:boolean = false;//钩子是否在抓取
 
 	public static HOOK_MANAGER_EVENT:string = 'HOOK_MANAGER_EVENT';
