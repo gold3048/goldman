@@ -17,9 +17,8 @@ class HookManager extends egret.Sprite {
 	private BACK_V_DEFAULT:number = 10;//钩子缩回速度
 	private backV:number = 10;//钩子缩回当前速度
 
-	private isHitBorder:boolean = false;//钩子是否碰到边缘
-	private isHitObj:boolean = false;//钩子是否碰到物体
 	private isGo:boolean = false;//钩子是否在抓取
+	public isBack:boolean = false;//钩子是否在收回
 
 	public static HOOK_MANAGER_EVENT:string = 'HOOK_MANAGER_EVENT';
 
@@ -47,7 +46,7 @@ class HookManager extends egret.Sprite {
 		this.hook.addChild(this.line);
 		this.hookBmp = goldman.createBitmapByName("hook");
 		this.hook.addChild(this.hookBmp);
-		this.updateHook("reset");
+		this.redrawHook("reset");
 
 		this.goV = this.GO_V_DEFAULT;
 		this.backV = this.BACK_V_DEFAULT;
@@ -86,10 +85,10 @@ class HookManager extends egret.Sprite {
 
 	private onUpdateGo():void {
 		var vHeight = this.goV;
-		if (this.isHitBorder || this.isHitObj) {
+		if (this.isBack) {
 			vHeight = -this.backV;
 		}
-		this.updateHook("v", vHeight);
+		this.redrawHook("v", vHeight);
 
 		this.dispatchEventWith(HookManager.HOOK_MANAGER_EVENT, false, {
 			type: HookManager.UPDATE_HOOK_POSITION_EVENT,
@@ -101,43 +100,35 @@ class HookManager extends egret.Sprite {
 			this.goComplete();
 		}
 
-		if (!this.isHitBorder) {//判断是否出界
+		if (!this.isBack) {//判断是否出界
 			var hookGlobalPoint = new egret.Point();
 			hookGlobalPoint = this.hook.localToGlobal(this.hookBmp.x, this.hookBmp.y, hookGlobalPoint);
-			if (hookGlobalPoint.x < 0) {
-				//console.log("左边出界了");
-				this.isHitBorder = true;
-			} else if (hookGlobalPoint.x > this.stageW) {
-				//console.log("右边出界了");
-				this.isHitBorder = true;
-			} else if (hookGlobalPoint.y > this.stageH) {
-				//console.log("下边出界了");
-				this.isHitBorder = true;
+			if (hookGlobalPoint.x < 0 || hookGlobalPoint.x > this.stageW || hookGlobalPoint.y > this.stageH) {//各种边缘出界
+				this.isBack = true;
 			}
 		}
 	}
 
 	public hitObject(v:number):void {
-		this.isHitObj = true;
+		this.isBack = true;
 		this.backV = v;
 	}
 
 	public goComplete():void {
 		console.log("Stop");
-		this.updateHook("reset");
+		this.redrawHook("reset");
 		this.isGo = false;
-		this.isHitObj = false;
-		this.isHitBorder = false;
+		this.isBack = false;
 		this.backV = this.BACK_V_DEFAULT;
 		this.startRotate();
 		this.dispatchEventWith(HookManager.HOOK_MANAGER_EVENT, false, {type: HookManager.GO_COMPLETE_EVENT});
 	}
 
-	private updateHook(mode, v:number = 0):void {
+	private redrawHook(mode, v:number = 0):void {
 		if (mode == "reset") {
 			this.lineHeight = 50;
 			this.hookBmp.y = 50;
-		} else if(mode == "v") {
+		} else if (mode == "v") {
 			this.hookBmp.y += v;
 		}
 		this.lineHeight += v;

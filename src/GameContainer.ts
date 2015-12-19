@@ -49,10 +49,10 @@ module goldman {
 					this.onHookGoComplete();
 					break;
 				case HookManager.UPDATE_HOOK_POSITION_EVENT:
-					if (this.hookManager.isHitObj) {
+					if (this.hookManager.isBack && this.goldManager.currHookGold) {
 						this.updateObjPosition(data.hook, data.hookBmp);
-					} else {
-						this.checkHookHitObject(data.hook, data.hookBmp);
+					} else if(!this.hookManager.isBack) {
+						this.checkHookHitObject(data.hookBmp);
 					}
 					break;
 			}
@@ -70,7 +70,7 @@ module goldman {
 			this.goldManager.setCurrHookGoldPosition(gloablP, hook.rotation)
 		}
 
-		private checkHookHitObject(hook:egret.Sprite, hookBmp:egret.Bitmap):void {
+		private checkHookHitObject(hookBmp:egret.Bitmap):void {
 			var goldsArr:Gold[] = this.goldManager.goldsArr;
 			for (var i in goldsArr) {
 				var gold:Gold = goldsArr[i];
