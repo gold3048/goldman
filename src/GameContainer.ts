@@ -76,9 +76,8 @@ module goldman {
 				var gold:Gold = goldsArr[i];
 				var isHit:boolean = GameUtil.hitTestObjByParentObj(hookBmp, gold, this);//检测钩子和物体是否相撞
 				if (isHit) {
-					this.hookManager.isHitObj = true;
-					this.hookManager.backV = gold.backV;
-					this.goldManager.currHookGold = gold;
+					this.hookManager.hitObject(gold.backV);
+					this.goldManager.hitObject(gold);
 					break;
 				}
 			}

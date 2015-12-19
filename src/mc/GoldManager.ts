@@ -38,12 +38,14 @@ class GoldManager extends egret.Sprite {
 		this.currHookGold.rotation = rotation;
 	}
 
+	public hitObject(gold:Gold):void {
+		this.currHookGold = gold;
+	}
+
 	public removeCurrentGold():Gold {
 		var currHookGold:Gold = this._goldsArr.splice(this._goldsArr.indexOf(this.currHookGold), 1)[0];
 		this.removeChild(currHookGold);
 		this.currHookGold = null;
 		return currHookGold;
 	}
-
-
 }

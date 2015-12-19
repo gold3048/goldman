@@ -40,8 +40,9 @@ class HookManager extends egret.Sprite {
 	}
 
 	private createHook():void {
-		this.hook = new egret.Sprite();
 
+		this.hook = new egret.Sprite();
+		this.addChild(this.hook);
 		this.line = new egret.Shape();
 		this.hook.addChild(this.line);
 		this.hookBmp = goldman.createBitmapByName("hook");
@@ -50,8 +51,6 @@ class HookManager extends egret.Sprite {
 
 		this.goV = this.GO_V_DEFAULT;
 		this.backV = this.BACK_V_DEFAULT;
-
-		this.addChild(this.hook);
 	}
 
 	public onUpdateEnterFrame():void {
@@ -116,6 +115,11 @@ class HookManager extends egret.Sprite {
 				this.isHitBorder = true;
 			}
 		}
+	}
+
+	public hitObject(v:number):void {
+		this.isHitObj = true;
+		this.backV = v;
 	}
 
 	public goComplete():void {
