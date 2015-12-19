@@ -18,7 +18,7 @@ class Gold extends egret.Sprite {
 		this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
 	}
 
-	private onAddToStage(event:egret.Event):void {
+	private onAddToStage(e:egret.Event):void {
 		this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
 		this.stageW = this.stage.stageWidth;
 		this.stageH = this.stage.stageHeight;
