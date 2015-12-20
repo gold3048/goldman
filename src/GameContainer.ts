@@ -3,10 +3,10 @@ module goldman {
 	 * 主游戏容器
 	 */
 	export class GameContainer extends egret.Sprite {
-		/**stage宽*/
-		private stageW:number;
-		/**stage高*/
-		private stageH:number;
+		/**游戏区域宽*/
+		static thisW:number;
+		/**游戏区域高*/
+		static thisH:number;
 
 		private hookManager:HookManager;
 		private goldManager:GoldManager;
@@ -19,8 +19,8 @@ module goldman {
 		/**初始化*/
 		private onAddToStage(e:egret.Event):void {
 			this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-			this.stageW = this.stage.stageWidth;
-			this.stageH = this.stage.stageHeight;
+			GameContainer.thisW = this.stage.stageWidth;
+			GameContainer.thisH = this.stage.stageHeight;
 			this.createGameScene();
 		}
 
@@ -32,7 +32,7 @@ module goldman {
 			this.hookManager = new HookManager();
 			this.hookManager.addEventListener(HookManager.HOOK_MANAGER_EVENT, this.onHookManagerEventHandler, this);
 			this.addChild(this.hookManager);
-			this.hookManager.x = this.stageW / 2;
+			this.hookManager.x = GameContainer.thisW / 2;
 			this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickStage, this);
 			this.addEventListener(egret.Event.ENTER_FRAME, this.onGameEnterFrame, this);
 		}
