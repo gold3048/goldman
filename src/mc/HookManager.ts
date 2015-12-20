@@ -1,14 +1,16 @@
 module goldman {
 	export class HookManager extends egret.Sprite {
 		private hook:Hook;
+
 		private BASE_ROTATION_MAX:number = 60;//钩子默认旋转角度
 		private LINE_HEIGHT_DEFAULT:number = 50;//绳子默认长度
-		private lineHeight:number = 50;//绳子当前长度
-		private direction:string;//当前方向
 		private GO_V_DEFAULT:number = 5;//钩子默认出击速度
-		private goV:number = 10;//钩子当前出击速度
 		private BACK_V_DEFAULT:number = 10;//钩子默认缩回速度
-		private backV:number = 10;//钩子当前缩回速度
+
+		private direction:string;//当前方向
+		private lineHeight:number;//绳子当前长度
+		private goV:number;//钩子当前出击速度
+		private backV:number;//钩子当前缩回速度
 
 		private isGo:boolean = false;//钩子是否在抓取
 		public isBack:boolean = false;//钩子是否在收回
@@ -26,6 +28,7 @@ module goldman {
 		private onAddToStage(e:egret.Event):void {
 			this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
 			this.createHook();
+			this.lineHeight = this.LINE_HEIGHT_DEFAULT;
 			this.hook.redrawHook(this.LINE_HEIGHT_DEFAULT);
 			this.startRotate();
 		}
@@ -74,6 +77,7 @@ module goldman {
 			if (this.isBack) {
 				vHeight = -this.backV;
 			}
+			console.log(vHeight);
 			this.lineHeight += vHeight;
 			this.hook.redrawHook(this.lineHeight);
 
@@ -105,8 +109,10 @@ module goldman {
 		}
 
 		public goComplete():void {
-			this.hook.setHookGrabStyle(false);
-			this.hook.redrawHook(this.LINE_HEIGHT_DEFAULT);
+			console.log("goComplete");
+			this.hook.setHookGrabStyle(false)
+			this.lineHeight = this.LINE_HEIGHT_DEFAULT;
+			this.hook.redrawHook(this.lineHeight);
 			this.isGo = false;
 			this.isBack = false;
 			this.startRotate();

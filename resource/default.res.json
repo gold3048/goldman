@@ -2,7 +2,7 @@
   "groups": [
     {
       "name": "preload",
-      "keys": "hook,hookback,gold1"
+      "keys": "hook,hookback,gold1,gold2,gold3,gold4,stone1,stone2,stone3,stone4,objsConfig"
     }
   ],
   "resources": [
@@ -20,6 +20,46 @@
       "name": "gold1",
       "type": "image",
       "url": "assets/gold1.gif"
+    },
+    {
+      "name": "gold2",
+      "type": "image",
+      "url": "assets/gold2.gif"
+    },
+    {
+      "name": "gold3",
+      "type": "image",
+      "url": "assets/gold3.gif"
+    },
+    {
+      "name": "gold4",
+      "type": "image",
+      "url": "assets/gold4.gif"
+    },
+    {
+      "name": "stone1",
+      "type": "image",
+      "url": "assets/stone1.png"
+    },
+    {
+      "name": "stone2",
+      "type": "image",
+      "url": "assets/stone2.png"
+    },
+    {
+      "name": "stone3",
+      "type": "image",
+      "url": "assets/stone3.png"
+    },
+    {
+      "name": "stone4",
+      "type": "image",
+      "url": "assets/stone4.png"
+    },
+    {
+      "name":"objsConfig",
+      "type":"json",
+      "url":"assets/objsConfig.json"
     }
   ]
 }

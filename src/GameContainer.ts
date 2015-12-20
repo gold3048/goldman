@@ -48,7 +48,7 @@ module goldman {
 					this.onHookGoComplete();
 					break;
 				case HookManager.UPDATE_HOOK_POSITION_EVENT:
-					if (this.hookManager.isBack && this.goldManager.currHookGold) {
+					if (this.hookManager.isBack && this.goldManager.catchGold) {
 						this.updateObjPosition(data.hook, data.hookGrabBmp);
 					} else if (!this.hookManager.isBack) {
 						this.checkHookHitObject(data.hookBmp);
@@ -58,13 +58,13 @@ module goldman {
 		}
 
 		private onHookGoComplete():void {
-			if (this.goldManager.currHookGold) {
-				this.goldManager.removeCurrentGold();
+			if (this.goldManager.catchGold) {
+				var catchGold:Gold = this.goldManager.removeCurrentGold();
 			}
 		}
 
 		private updateObjPosition(hook:egret.Sprite, hookGrabBmp:egret.Bitmap):void {
-			var p:egret.Point = hook.localToGlobal(hookGrabBmp.x - hookGrabBmp.width / 2, hookGrabBmp.y + hookGrabBmp.height * 0.45);
+			var p:egret.Point = hook.localToGlobal(hookGrabBmp.x - this.goldManager.catchGold.width / 2 + hookGrabBmp.width / 2, hookGrabBmp.y + hookGrabBmp.height * 0.45);
 			var gloablP:egret.Point = this.globalToLocal(p.x, p.y);
 			this.goldManager.setCurrHookGoldPosition(gloablP, hook.rotation)
 		}

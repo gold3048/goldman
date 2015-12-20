@@ -1,12 +1,14 @@
 module goldman {
 	export class Gold extends egret.Sprite {
 		//金钱
+		private _type:string;
 		private _money:number;
 		private _backV:number;
 		private gold:egret.Bitmap;
 
-		public constructor(money:number, backV:number) {
+		public constructor(tp:string, money:number, backV:number) {
 			super();
+			this._type = tp;
 			this._money = money;
 			this._backV = backV;
 			this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
@@ -14,7 +16,7 @@ module goldman {
 
 		private onAddToStage(e:egret.Event):void {
 			this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-			this.gold = goldman.createBitmapByName("gold1");
+			this.gold = goldman.createBitmapByName(this._type);
 			this.addChild(this.gold);
 		}
 
@@ -32,6 +34,14 @@ module goldman {
 
 		get backV():number {
 			return this._backV;
+		}
+
+		set type(t:string) {
+			this._type = t;
+		}
+
+		get type():string {
+			return this._type;
 		}
 	}
 }

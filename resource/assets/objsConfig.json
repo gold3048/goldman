@@ -1,0 +1,34 @@
+{
+  "gold1": {
+    "money": 10,
+    "backV": 8
+  },
+  "gold2": {
+    "money": 20,
+    "backV": 6
+  },
+  "gold3": {
+    "money": 30,
+    "backV": 4
+  },
+  "gold4": {
+    "money": 40,
+    "backV": 1.8
+  },
+  "stone1": {
+    "money": 2,
+    "backV": 5
+  },
+  "stone2": {
+    "money": 4,
+    "backV": 4
+  },
+  "stone3": {
+    "money": 6,
+    "backV": 3
+  },
+  "stone4": {
+    "money": 8,
+    "backV": 1
+  }
+}
