@@ -14,7 +14,9 @@ module goldman {
 
 		public createGolds():void {
 			for (var i = 0; i < 8; i++) {
-				var gold:Gold = new Gold();
+				var money = Math.floor(10 + Math.random() * 10);
+				var backV = Math.floor(2 + Math.random() * 0);
+				var gold:Gold = new Gold(money, backV);
 				gold.x = Math.floor(GameContainer.thisW * Math.random());
 				gold.y = Math.floor((GameContainer.thisH - 100) * Math.random() + 100);
 				this._goldsArr.push(gold);
