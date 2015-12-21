@@ -1,8 +1,7 @@
 module goldman {
 	export class Gold extends egret.Sprite {
-		//金钱
 		private _type:string;
-		private _money:number;
+		private _money:number;//金钱
 		private _backV:number;
 		private gold:egret.Bitmap;
 
