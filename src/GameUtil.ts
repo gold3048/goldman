@@ -6,26 +6,6 @@ module goldman {
 			var rect2:egret.Rectangle = obj2.getTransformedBounds(commonParentObj);
 			return rect1.intersects(rect2);
 		}
-
-		public static angleToRadian(angle:number):number {
-			return angle * (Math.PI / 180);
-		}
-
-		public static radianToAngle(radian:number):number {
-			return radian * (180 / Math.PI);
-		}
-
-		public static sinD(angle:number):number {
-			return Math.sin(this.angleToRadian(angle));
-		}
-
-		public static cosD(angle:number):number {
-			return Math.cos(this.angleToRadian(angle));
-		}
-
-		public static atan2D(y:number, x:number):number {
-			return this.radianToAngle(Math.atan2(y, x))
-		}
 	}
 
 	/**
@@ -37,4 +17,12 @@ module goldman {
 		result.texture = texture;
 		return result;
 	}
+
+	export function removeAllchild(diso:egret.DisplayObjectContainer):void{
+		while(diso.numChildren) {
+			diso.removeChildAt(0);
+		}
+	}
+
+
 }

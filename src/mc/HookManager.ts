@@ -77,7 +77,6 @@ module goldman {
 			if (this.isBack) {
 				vHeight = -this.backV;
 			}
-			console.log(vHeight);
 			this.lineHeight += vHeight;
 			this.hook.redrawHook(this.lineHeight);
 
@@ -109,7 +108,6 @@ module goldman {
 		}
 
 		public goComplete():void {
-			console.log("goComplete");
 			this.hook.setHookGrabStyle(false)
 			this.lineHeight = this.LINE_HEIGHT_DEFAULT;
 			this.hook.redrawHook(this.lineHeight);

@@ -9,7 +9,7 @@ module goldman {
 		static thisH:number;
 
 		private hookManager:HookManager;
-		private goldManager:GoldManager;
+		private objManager:ObjManager;
 
 		public constructor() {
 			super();
@@ -26,9 +26,10 @@ module goldman {
 
 		/**创建游戏场景*/
 		private createGameScene():void {
-			this.goldManager = new GoldManager();
-			this.addChild(this.goldManager);
-			this.goldManager.createGolds();
+			this.objManager = new ObjManager();
+			this.objManager.addEventListener(ObjManager.OBJ_MANAGER_EVENT, this.onObjManagerEventHandler, this);
+			this.addChild(this.objManager);
+			this.objManager.createObjs();
 			this.hookManager = new HookManager();
 			this.hookManager.addEventListener(HookManager.HOOK_MANAGER_EVENT, this.onHookManagerEventHandler, this);
 			this.addChild(this.hookManager);
@@ -41,6 +42,12 @@ module goldman {
 			this.hookManager.onUpdateEnterFrame();
 		}
 
+		private onObjManagerEventHandler(e:egret.Event):void {
+			var data:any = (e.data);
+			switch (data.type) {
+			}
+		}
+
 		private onHookManagerEventHandler(e:egret.Event):void {
 			var data:any = (e.data);
 			switch (data.type) {
@@ -48,8 +55,8 @@ module goldman {
 					this.onHookGoComplete();
 					break;
 				case HookManager.UPDATE_HOOK_POSITION_EVENT:
-					if (this.hookManager.isBack && this.goldManager.catchGold) {
-						this.updateObjPosition(data.hook, data.hookGrabBmp);
+					if (this.hookManager.isBack && this.objManager.catchObj) {
+						this.updateCatchObjPosition(data.hook, data.hookGrabBmp);
 					} else if (!this.hookManager.isBack) {
 						this.checkHookHitObject(data.hookBmp);
 					}
@@ -58,25 +65,38 @@ module goldman {
 		}
 
 		private onHookGoComplete():void {
-			if (this.goldManager.catchGold) {
-				var catchGold:Gold = this.goldManager.removeCurrentGold();
+			if (this.objManager.catchObj) {
+				var catchObj = this.objManager.removeObj(this.objManager.catchObj);
+				//todo 获取当前价格
+				catchObj.destory();
 			}
 		}
 
-		private updateObjPosition(hook:egret.Sprite, hookGrabBmp:egret.Bitmap):void {
-			var p:egret.Point = hook.localToGlobal(hookGrabBmp.x - this.goldManager.catchGold.width / 2 + hookGrabBmp.width / 2, hookGrabBmp.y + hookGrabBmp.height * 0.45);
+		private updateCatchObjPosition(hook:egret.Sprite, hookGrabBmp:egret.Bitmap):void {
+			var p:egret.Point = hook.localToGlobal(hookGrabBmp.x - this.objManager.catchObj.width / 2 + hookGrabBmp.width / 2, hookGrabBmp.y + hookGrabBmp.height * 0.45);
 			var gloablP:egret.Point = this.globalToLocal(p.x, p.y);
-			this.goldManager.setCurrHookGoldPosition(gloablP, hook.rotation)
+			this.objManager.setCatchObjPosition(gloablP, hook.rotation)
 		}
 
 		private checkHookHitObject(hookBmp:egret.Bitmap):void {
-			var goldsArr:Gold[] = this.goldManager.goldsArr;
+			var goldsArr:Obj[] = this.objManager.objsArr;
+			var me = this;
 			for (var i in goldsArr) {
-				var gold:Gold = goldsArr[i];
-				var isHit:boolean = GameUtil.hitTestObjByParentObj(hookBmp, gold, this);//检测钩子和物体是否相撞
+				var obj:Obj = goldsArr[i];
+				var isHit:boolean = GameUtil.hitTestObjByParentObj(hookBmp, obj, this);//检测钩子和物体是否相撞
 				if (isHit) {
-					this.hookManager.hitObject(gold.backV);
-					this.goldManager.hitObject(gold);
+					me.objManager.setCatchObject(obj);
+					if(obj.type == "TNT") {
+						me.hookManager.hitObject(0);
+						me.objManager.removeObjsAtAreaByHitObj(obj);
+						obj.overObject();
+						setTimeout(function() {
+							obj.backObject();
+							me.hookManager.hitObject(obj.backV);
+						}, 300);
+					} else {
+						me.hookManager.hitObject(obj.backV);
+					}
 					break;
 				}
 			}
