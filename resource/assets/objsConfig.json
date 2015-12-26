@@ -1,34 +1,58 @@
 {
-  "gold1": {
+  "Gold1": {
     "money": 10,
     "backV": 8
   },
-  "gold2": {
+  "Gold2": {
     "money": 20,
     "backV": 6
   },
-  "gold3": {
+  "Gold3": {
     "money": 30,
     "backV": 4
   },
-  "gold4": {
-    "money": 40,
-    "backV": 1.8
-  },
-  "stone1": {
+  "Stone1": {
     "money": 2,
     "backV": 5
   },
-  "stone2": {
+  "Stone2": {
     "money": 4,
     "backV": 4
   },
-  "stone3": {
+  "Stone3": {
     "money": 6,
     "backV": 3
   },
-  "stone4": {
+  "Stone4": {
     "money": 8,
     "backV": 1
+  },
+  "Diamond": {
+    "money": 900,
+    "backV": 8
+  },
+  "Kulou": {
+    "money": 20,
+    "backV": 3
+  },
+  "Gutou": {
+    "money": 7,
+    "backV": 3
+  },
+  "TNT": {
+    "money": 2,
+    "backV": 7
+  },
+  "Mouse": {
+    "money": 2,
+    "backV": 7
+  },
+  "MouseDiamond": {
+    "money": 2,
+    "backV": 602
+  },
+  "RandomBag": {
+    "money": "1-1000",
+    "backV": "1-10"
   }
 }

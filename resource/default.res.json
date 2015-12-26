@@ -2,7 +2,7 @@
   "groups": [
     {
       "name": "preload",
-      "keys": "hook,hookback,gold1,gold2,gold3,gold4,stone1,stone2,stone3,stone4,objsConfig"
+      "keys": "hook,hookback,Gold1,Gold2,Gold3,Stone1,Stone2,Diamond,Kulou,Gutou,RandomBag,TNT,TNT_Over,TNT_Back,Mouse,MouseDiamond,objsConfig"
     }
   ],
   "resources": [
@@ -17,44 +17,74 @@
       "url": "assets/hookback.png"
     },
     {
-      "name": "gold1",
+      "name": "Gold1",
       "type": "image",
-      "url": "assets/gold1.gif"
+      "url": "assets/gold1.png"
     },
     {
-      "name": "gold2",
+      "name": "Gold2",
       "type": "image",
-      "url": "assets/gold2.gif"
+      "url": "assets/gold2.png"
     },
     {
-      "name": "gold3",
+      "name": "Gold3",
       "type": "image",
-      "url": "assets/gold3.gif"
+      "url": "assets/gold3.png"
     },
     {
-      "name": "gold4",
-      "type": "image",
-      "url": "assets/gold4.gif"
-    },
-    {
-      "name": "stone1",
+      "name": "Stone1",
       "type": "image",
       "url": "assets/stone1.png"
     },
     {
-      "name": "stone2",
+      "name": "Stone2",
       "type": "image",
       "url": "assets/stone2.png"
     },
     {
-      "name": "stone3",
+      "name": "Diamond",
       "type": "image",
-      "url": "assets/stone3.png"
+      "url": "assets/diamond.png"
     },
     {
-      "name": "stone4",
+      "name": "Kulou",
       "type": "image",
-      "url": "assets/stone4.png"
+      "url": "assets/kulou.png"
+    },
+    {
+      "name": "Gutou",
+      "type": "image",
+      "url": "assets/gutou.png"
+    },
+    {
+      "name": "RandomBag",
+      "type": "image",
+      "url": "assets/randomBag.png"
+    },
+    {
+      "name": "TNT",
+      "type": "image",
+      "url": "assets/TNT.png"
+    },
+    {
+      "name": "TNT_Over",
+      "type": "image",
+      "url": "assets/TNT_over.png"
+    },
+    {
+      "name": "TNT_Back",
+      "type": "image",
+      "url": "assets/TNT_back.png"
+    },
+    {
+      "name": "Mouse",
+      "type": "image",
+      "url": "assets/mouse.png"
+    },
+    {
+      "name": "MouseDiamond",
+      "type": "image",
+      "url": "assets/mouseDiamond.png"
     },
     {
       "name":"objsConfig",
