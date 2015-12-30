@@ -1,5 +1,6 @@
 class Main extends egret.Sprite {
 
+    //这是构造函数
     public constructor() {
         super();
         this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this);
