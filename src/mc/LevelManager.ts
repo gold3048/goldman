@@ -59,7 +59,6 @@ module goldman {
 			this.timeTextField.textAlign = egret.HorizontalAlign.CENTER;
 			this.timeTextField.size = 36;
 			this.timeTextField.text = "0s";
-
 		}
 
 		public setScoreText(score:number):void {
