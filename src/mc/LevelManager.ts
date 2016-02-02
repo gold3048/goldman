@@ -52,7 +52,7 @@ module goldman {
 			this.timeTextField = new egret.TextField();
 			this.addChild(this.timeTextField);
 			this.timeTextField.x = 575;
-			this.timeTextField.y = 107;
+			this.timeTextField.y = 110;
 			this.timeTextField.width = 110;
 			this.timeTextField.fontFamily = "Arial";
 			this.timeTextField.textColor = 0xffe400;
