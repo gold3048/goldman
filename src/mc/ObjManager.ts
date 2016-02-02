@@ -18,7 +18,7 @@ module goldman {
 		}
 
 		public createObjs():void {
-			var arr:string[] = ["Mouse", "Mouse", "Mouse", "MouseDiamond", "MouseDiamond", "MouseDiamond", "Gold1", "Gold1", "Gold2", "Gold1", "Gold3", "Gold2", "Gold3", "Stone1", "Stone2", "Diamond", "TNT"];
+			var arr:string[] = ["Mouse", "MouseDiamond", "Gold1", "Gold2", "Gold3", "Stone1", "Stone2", "Diamond", "TNT"];
 			for (var i = 0; i < arr.length; i++) {
 				var ty:string = arr[i];
 				var money:string = this.objsConfig[ty].money;
@@ -26,7 +26,7 @@ module goldman {
 				var oClass:any = egret.getDefinitionByName("goldman." + ty);
 				var gold:Obj = new oClass(money, backV);
 				gold.x = Math.floor(GameContainer.thisW * Math.random());
-				gold.y = Math.floor((GameContainer.thisH - 100) * Math.random() + 100);
+				gold.y = Math.floor((GameContainer.thisH - 400) * Math.random() + 210);
 				this._objsArr.push(gold);
 				this.addChild(gold);
 			}

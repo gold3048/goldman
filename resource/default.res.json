@@ -2,17 +2,22 @@
   "groups": [
     {
       "name": "preload",
-      "keys": "hook,hookback,Gold1,Gold2,Gold3,Stone1,Stone2,Diamond,Kulou,Gutou,RandomBag,TNT,TNT_Over,TNT_Back,Mouse,MouseDiamond,objsConfig"
+      "keys": "bgall,Hook,Hookback,Gold1,Gold2,Gold3,Stone1,Stone2,Diamond,Kulou,Gutou,RandomBag,TNT,TNT_Over,TNT_Back,Mouse,MouseDiamond,Hero,objsConfig"
     }
   ],
   "resources": [
     {
-      "name": "hook",
+      "name": "bgall",
+      "type": "image",
+      "url": "assets/bgall.png"
+    },
+    {
+      "name": "Hook",
       "type": "image",
       "url": "assets/hook.png"
     },
     {
-      "name": "hookback",
+      "name": "Hookback",
       "type": "image",
       "url": "assets/hookback.png"
     },
@@ -85,6 +90,11 @@
       "name": "MouseDiamond",
       "type": "image",
       "url": "assets/mouseDiamond.png"
+    },
+    {
+      "name": "Hero",
+      "type": "image",
+      "url": "assets/hero.png"
     },
     {
       "name":"objsConfig",

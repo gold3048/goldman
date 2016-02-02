@@ -10,6 +10,7 @@ module goldman {
 
 		private hookManager:HookManager;
 		private objManager:ObjManager;
+		private levelManager:LevelManager;
 
 		public constructor() {
 			super();
@@ -26,6 +27,11 @@ module goldman {
 
 		/**创建游戏场景*/
 		private createGameScene():void {
+			this.levelManager = new LevelManager();
+			this.levelManager.addEventListener(LevelManager.LEVEL_MANAGER_EVENT, this.onLevelManagerEventHandler, this);
+			this.addChild(this.levelManager);
+			this.levelManager.createObjs();
+			this.levelManager.setScoreText(154);
 			this.objManager = new ObjManager();
 			this.objManager.addEventListener(ObjManager.OBJ_MANAGER_EVENT, this.onObjManagerEventHandler, this);
 			this.addChild(this.objManager);
@@ -34,12 +40,20 @@ module goldman {
 			this.hookManager.addEventListener(HookManager.HOOK_MANAGER_EVENT, this.onHookManagerEventHandler, this);
 			this.addChild(this.hookManager);
 			this.hookManager.x = GameContainer.thisW / 2;
+			this.hookManager.y = 158;
+
 			this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickStage, this);
 			this.addEventListener(egret.Event.ENTER_FRAME, this.onGameEnterFrame, this);
 		}
 
 		private onGameEnterFrame(e:Event):void {
 			this.hookManager.onUpdateEnterFrame();
+		}
+
+		private onLevelManagerEventHandler(e:egret.Event):void {
+			var data:any = (e.data);
+			switch (data.type) {
+			}
 		}
 
 		private onObjManagerEventHandler(e:egret.Event):void {

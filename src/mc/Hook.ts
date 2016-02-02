@@ -16,9 +16,9 @@ module goldman {
 
 			this.line = new egret.Shape();
 			this.addChild(this.line);
-			this._hookBmp = goldman.createBitmapByName("hook");
+			this._hookBmp = goldman.createBitmapByName("Hook");
 			this.addChild(this._hookBmp);
-			this._hookGrabBmp = goldman.createBitmapByName("hookback");
+			this._hookGrabBmp = goldman.createBitmapByName("Hookback");
 			this._hookGrabBmp.visible = false;
 			this.addChild(this._hookGrabBmp);
 		}
