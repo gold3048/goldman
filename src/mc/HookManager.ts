@@ -3,7 +3,7 @@ module goldman {
 		private hook:Hook;
 
 		private BASE_ROTATION_MAX:number = 60;//钩子默认旋转角度
-		private LINE_HEIGHT_DEFAULT:number = 50;//绳子默认长度
+		private LINE_HEIGHT_DEFAULT:number = 20;//绳子默认长度
 		private GO_V_DEFAULT:number = 5;//钩子默认出击速度
 		private BACK_V_DEFAULT:number = 10;//钩子默认缩回速度
 
@@ -116,7 +116,7 @@ module goldman {
 			this.dispatchEventWith(HookManager.HOOK_MANAGER_EVENT, false, {type: HookManager.GO_COMPLETE_EVENT});
 		}
 
-		public setBackHookType(typeStr:String):void {
+		public setBackHookType(typeStr:string):void {
 			console.log("catchObj.type: " + typeStr);
 			this.hook.setBackHookType(typeStr);
 		}

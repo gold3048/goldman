@@ -2,7 +2,11 @@
   "groups": [
     {
       "name": "preload",
-      "keys": "bgall,Hook,Gold1,Gold1_Back,Gold2,Gold2_Back,Gold3,Gold3_Back,Stone1,Stone1_Back,Stone2,Stone2_Back,Diamond,Diamond_Back,Kulou,Kulou_Back,Gutou,Gutou_Back,RandomBag,RandomBag_Back,TNT,TNT_Over,TNT_Back,Mouse,Mouse_Back,MouseDiamond,MouseDiamond_Back,Hero,objsConfig"
+      "keys": "bgall,Hook,Hero,LevelPanel,BombBtn,objsConfig"
+    },
+    {
+      "name": "preload_objs",
+      "keys": "Gold1,Gold1_Back,Gold2,Gold2_Back,Gold3,Gold3_Back,Stone1,Stone1_Back,Stone2,Stone2_Back,Diamond,Diamond_Back,Kulou,Kulou_Back,Gutou,Gutou_Back,RandomBag,RandomBag_Back,TNT,TNT_Over,TNT_Back,Mouse,Mouse_Back,MouseDiamond,MouseDiamond_Back"
     }
   ],
   "resources": [
@@ -145,6 +149,16 @@
       "name": "Hero",
       "type": "image",
       "url": "assets/hero.png"
+    },
+    {
+      "name": "LevelPanel",
+      "type": "image",
+      "url": "assets/level_panel.png"
+    },
+    {
+      "name": "BombBtn",
+      "type": "image",
+      "url": "assets/bomb_btn.png"
     },
     {
       "name":"objsConfig",
