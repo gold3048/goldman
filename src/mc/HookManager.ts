@@ -83,8 +83,7 @@ module goldman {
 			this.dispatchEventWith(HookManager.HOOK_MANAGER_EVENT, false, {
 				type: HookManager.UPDATE_HOOK_POSITION_EVENT,
 				hook: this.hook,
-				hookBmp: this.hook.hookBmp,
-				hookGrabBmp: this.hook.hookGrabBmp
+				hookBmp: this.hook.hookBmp
 			});
 
 			if (this.lineHeight < this.LINE_HEIGHT_DEFAULT) {
@@ -104,17 +103,22 @@ module goldman {
 		public hitObject(backV:number):void {
 			this.isBack = true;
 			this.backV = backV;
-			this.hook.setHookGrabStyle(true);
+			//this.hook.setHookGrabStyle(true);
 		}
 
 		public goComplete():void {
-			this.hook.setHookGrabStyle(false)
+			this.hook.setBackHookType();
 			this.lineHeight = this.LINE_HEIGHT_DEFAULT;
 			this.hook.redrawHook(this.lineHeight);
 			this.isGo = false;
 			this.isBack = false;
 			this.startRotate();
 			this.dispatchEventWith(HookManager.HOOK_MANAGER_EVENT, false, {type: HookManager.GO_COMPLETE_EVENT});
+		}
+
+		public setBackHookType(typeStr:String):void {
+			console.log("catchObj.type: " + typeStr);
+			this.hook.setBackHookType(typeStr);
 		}
 	}
 }

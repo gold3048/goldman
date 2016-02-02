@@ -24,9 +24,6 @@ module goldman {
 		public overObject():void {
 		}
 
-		public backObject():void {
-		}
-
 		set money(m:number) {
 			this._money = m;
 		}

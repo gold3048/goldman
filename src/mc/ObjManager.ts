@@ -1,7 +1,6 @@
 module goldman {
 	export class ObjManager extends egret.Sprite {
 		private _objsArr:Obj[] = [];
-		public catchObj:Obj;
 
 		private objsConfig:any;
 
@@ -36,16 +35,6 @@ module goldman {
 			return this._objsArr;
 		}
 
-		public setCatchObjPosition(gloablP:egret.Point, rotation:number):void {
-			this.catchObj.x = gloablP.x;
-			this.catchObj.y = gloablP.y;
-			this.catchObj.rotation = rotation;
-		}
-
-		public setCatchObject(obj:Obj):void {
-			this.catchObj = obj;
-		}
-
 		//移除一定范围内的物体
 		public removeObjsAtAreaByHitObj(hitObj:Obj):void {
 			if (hitObj.type == "TNT") {
@@ -61,7 +50,7 @@ module goldman {
 						}
 					}
 				}
-				for(var i in removeObjsArr) {
+				for (var i in removeObjsArr) {
 					var o:Obj = removeObjsArr[i];
 					this.removeObj(o);
 				}
@@ -71,9 +60,6 @@ module goldman {
 		public removeObj(obj:Obj):Obj {
 			var currHookObj:Obj = this._objsArr.splice(this._objsArr.indexOf(obj), 1)[0];
 			this.removeChild(currHookObj);
-			if(this.catchObj === currHookObj) {
-				this.catchObj = null;
-			}
 			return currHookObj;
 		}
 	}

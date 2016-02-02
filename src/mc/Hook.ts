@@ -4,7 +4,7 @@ module goldman {
 
 		private line:egret.Shape;
 		private _hookBmp:egret.Bitmap;
-		private _hookGrabBmp:egret.Bitmap;
+		private _backHookBmp:egret.Bitmap;
 
 		public constructor() {
 			super();
@@ -18,34 +18,40 @@ module goldman {
 			this.addChild(this.line);
 			this._hookBmp = goldman.createBitmapByName("Hook");
 			this.addChild(this._hookBmp);
-			this._hookGrabBmp = goldman.createBitmapByName("Hookback");
-			this._hookGrabBmp.visible = false;
-			this.addChild(this._hookGrabBmp);
 		}
 
-		public setHookGrabStyle(isGrab:boolean = false):void {
-			this._hookBmp.visible = !isGrab;
-			this._hookGrabBmp.visible = isGrab;
+		public setBackHookType(typeStr:string = ""):void {
+			if (typeStr) {
+				this._backHookBmp = goldman.createBitmapByName(typeStr + "_Back");
+				this.addChild(this._backHookBmp);
+				this._backHookBmp.x = this._hookBmp.x;
+				this._backHookBmp.y = this._hookBmp.y;
+				this._hookBmp.visible = false;
+			} else {
+				if (this._backHookBmp && this.contains(this._backHookBmp)) {
+					this.removeChild(this._backHookBmp);
+					this._backHookBmp = null;
+				}
+				this._hookBmp.visible = true;
+			}
 		}
 
 		public redrawHook(lineHeight:number = 0):void {
 			this._hookBmp.y = lineHeight;
-			this._hookGrabBmp.y = lineHeight;
 			this.line.graphics.clear();
 			this.line.graphics.lineStyle(2, 0x000000);
 			this.line.graphics.moveTo(0, 0);
 			this.line.graphics.lineTo(0, lineHeight);
 			this.line.graphics.endFill();
 			this._hookBmp.x = -this._hookBmp.width / 2;
-			this._hookGrabBmp.x = -this._hookGrabBmp.width / 2;
+			if(this._backHookBmp) {
+				this._backHookBmp.y = lineHeight;
+				this._backHookBmp.x = -this._backHookBmp.width / 2;
+			}
 		}
 
 		get hookBmp():egret.Bitmap {
 			return this._hookBmp;
-		}
-
-		get hookGrabBmp():egret.Bitmap {
-			return this._hookGrabBmp;
 		}
 	}
 }

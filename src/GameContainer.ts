@@ -66,30 +66,13 @@ module goldman {
 			var data:any = (e.data);
 			switch (data.type) {
 				case HookManager.GO_COMPLETE_EVENT:
-					this.onHookGoComplete();
 					break;
 				case HookManager.UPDATE_HOOK_POSITION_EVENT:
-					if (this.hookManager.isBack && this.objManager.catchObj) {
-						this.updateCatchObjPosition(data.hook, data.hookGrabBmp);
-					} else if (!this.hookManager.isBack) {
+					if (!this.hookManager.isBack) {
 						this.checkHookHitObject(data.hookBmp);
 					}
 					break;
 			}
-		}
-
-		private onHookGoComplete():void {
-			if (this.objManager.catchObj) {
-				var catchObj = this.objManager.removeObj(this.objManager.catchObj);
-				//todo 获取当前价格
-				catchObj.destory();
-			}
-		}
-
-		private updateCatchObjPosition(hook:egret.Sprite, hookGrabBmp:egret.Bitmap):void {
-			var p:egret.Point = hook.localToGlobal(hookGrabBmp.x - this.objManager.catchObj.width / 2 + hookGrabBmp.width / 2, hookGrabBmp.y + hookGrabBmp.height * 0.45);
-			var gloablP:egret.Point = this.globalToLocal(p.x, p.y);
-			this.objManager.setCatchObjPosition(gloablP, hook.rotation)
 		}
 
 		private checkHookHitObject(hookBmp:egret.Bitmap):void {
@@ -99,17 +82,23 @@ module goldman {
 				var obj:Obj = goldsArr[i];
 				var isHit:boolean = GameUtil.hitTestObjByParentObj(hookBmp, obj, this);//检测钩子和物体是否相撞
 				if (isHit) {
-					me.objManager.setCatchObject(obj);
-					if(obj.type == "TNT") {
+					if (obj.type == "TNT") {
 						me.hookManager.hitObject(0);
 						me.objManager.removeObjsAtAreaByHitObj(obj);
 						obj.overObject();
-						setTimeout(function() {
-							obj.backObject();
+						setTimeout(function () {
 							me.hookManager.hitObject(obj.backV);
+							//todo 获取当前价格
+							console.log("obj.money " + obj.money);
+							me.hookManager.setBackHookType(obj.type);
+							obj.destory();
 						}, 300);
 					} else {
 						me.hookManager.hitObject(obj.backV);
+						//todo 获取当前价格
+						console.log("obj.money " + obj.money);
+						me.hookManager.setBackHookType(obj.type);
+						obj.destory();
 					}
 					break;
 				}

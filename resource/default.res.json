@@ -2,7 +2,7 @@
   "groups": [
     {
       "name": "preload",
-      "keys": "bgall,Hook,Hookback,Gold1,Gold2,Gold3,Stone1,Stone2,Diamond,Kulou,Gutou,RandomBag,TNT,TNT_Over,TNT_Back,Mouse,MouseDiamond,Hero,objsConfig"
+      "keys": "bgall,Hook,Gold1,Gold1_Back,Gold2,Gold2_Back,Gold3,Gold3_Back,Stone1,Stone1_Back,Stone2,Stone2_Back,Diamond,Diamond_Back,Kulou,Kulou_Back,Gutou,Gutou_Back,RandomBag,RandomBag_Back,TNT,TNT_Over,TNT_Back,Mouse,Mouse_Back,MouseDiamond,MouseDiamond_Back,Hero,objsConfig"
     }
   ],
   "resources": [
@@ -17,14 +17,14 @@
       "url": "assets/hook.png"
     },
     {
-      "name": "Hookback",
-      "type": "image",
-      "url": "assets/hookback.png"
-    },
-    {
       "name": "Gold1",
       "type": "image",
       "url": "assets/gold1.png"
+    },
+    {
+      "name": "Gold1_Back",
+      "type": "image",
+      "url": "assets/gold1_back.png"
     },
     {
       "name": "Gold2",
@@ -32,9 +32,19 @@
       "url": "assets/gold2.png"
     },
     {
+      "name": "Gold2_Back",
+      "type": "image",
+      "url": "assets/gold2_back.png"
+    },
+    {
       "name": "Gold3",
       "type": "image",
       "url": "assets/gold3.png"
+    },
+    {
+      "name": "Gold3_Back",
+      "type": "image",
+      "url": "assets/gold3_back.png"
     },
     {
       "name": "Stone1",
@@ -42,9 +52,19 @@
       "url": "assets/stone1.png"
     },
     {
+      "name": "Stone1_Back",
+      "type": "image",
+      "url": "assets/stone1_back.png"
+    },
+    {
       "name": "Stone2",
       "type": "image",
       "url": "assets/stone2.png"
+    },
+    {
+      "name": "Stone2_Back",
+      "type": "image",
+      "url": "assets/stone2_back.png"
     },
     {
       "name": "Diamond",
@@ -52,9 +72,19 @@
       "url": "assets/diamond.png"
     },
     {
+      "name": "Diamond_Back",
+      "type": "image",
+      "url": "assets/diamond_back.png"
+    },
+    {
       "name": "Kulou",
       "type": "image",
       "url": "assets/kulou.png"
+    },
+    {
+      "name": "Kulou_Back",
+      "type": "image",
+      "url": "assets/kulou_back.png"
     },
     {
       "name": "Gutou",
@@ -62,9 +92,19 @@
       "url": "assets/gutou.png"
     },
     {
+      "name": "Gutou_Back",
+      "type": "image",
+      "url": "assets/gutou_back.png"
+    },
+    {
       "name": "RandomBag",
       "type": "image",
       "url": "assets/randomBag.png"
+    },
+    {
+      "name": "RandomBag_Back",
+      "type": "image",
+      "url": "assets/randomBag_back.png"
     },
     {
       "name": "TNT",
@@ -87,9 +127,19 @@
       "url": "assets/mouse.png"
     },
     {
+      "name": "Mouse_Back",
+      "type": "image",
+      "url": "assets/mouse_back.png"
+    },
+    {
       "name": "MouseDiamond",
       "type": "image",
       "url": "assets/mouseDiamond.png"
+    },
+    {
+      "name": "MouseDiamond_Back",
+      "type": "image",
+      "url": "assets/mouseDiamond_back.png"
     },
     {
       "name": "Hero",
