@@ -2,11 +2,11 @@
   "groups": [
     {
       "name": "preload",
-      "keys": "bgall,Hook,Hero,LevelPanel,BombBtn,objsConfig"
+      "keys": "bgall,Hook,Hero,LevelPanel,BombBtn,objsConfig,Level"
     },
     {
       "name": "preload_objs",
-      "keys": "Gold1,Gold1_Back,Gold2,Gold2_Back,Gold3,Gold3_Back,Stone1,Stone1_Back,Stone2,Stone2_Back,Diamond,Diamond_Back,Kulou,Kulou_Back,Gutou,Gutou_Back,RandomBag,RandomBag_Back,TNT,TNT_Over,TNT_Back,Mouse,Mouse_Back,MouseDiamond,MouseDiamond_Back"
+        "keys": "Gold1,Gold1_Back,Gold2,Gold2_Back,Gold3,Gold3_Back,Stone1,Stone1_Back,Stone2,Stone2_Back,Diamond,Diamond_Back,Kulou,Kulou_Back,Gutou,Gutou_Back,RandomBag,RandomBag_Back,TNT,TNT_Over,TNT_Back,Mouse,Mouse_Back,MouseDiamond,MouseDiamond_Back"
     }
   ],
   "resources": [
@@ -18,97 +18,97 @@
     {
       "name": "Hook",
       "type": "image",
-      "url": "assets/hook.png"
+      "url": "assets/Hook.png"
     },
     {
       "name": "Gold1",
       "type": "image",
-      "url": "assets/gold1.png"
+      "url": "assets/Gold1.png"
     },
     {
       "name": "Gold1_Back",
       "type": "image",
-      "url": "assets/gold1_back.png"
+      "url": "assets/Gold1_Back.png"
     },
     {
       "name": "Gold2",
       "type": "image",
-      "url": "assets/gold2.png"
+      "url": "assets/Gold2.png"
     },
     {
       "name": "Gold2_Back",
       "type": "image",
-      "url": "assets/gold2_back.png"
+      "url": "assets/Gold2_Back.png"
     },
     {
       "name": "Gold3",
       "type": "image",
-      "url": "assets/gold3.png"
+      "url": "assets/Gold3.png"
     },
     {
       "name": "Gold3_Back",
       "type": "image",
-      "url": "assets/gold3_back.png"
+      "url": "assets/Gold3_Back.png"
     },
     {
       "name": "Stone1",
       "type": "image",
-      "url": "assets/stone1.png"
+      "url": "assets/Stone1.png"
     },
     {
       "name": "Stone1_Back",
       "type": "image",
-      "url": "assets/stone1_back.png"
+      "url": "assets/Stone1_Back.png"
     },
     {
       "name": "Stone2",
       "type": "image",
-      "url": "assets/stone2.png"
+      "url": "assets/Stone2.png"
     },
     {
       "name": "Stone2_Back",
       "type": "image",
-      "url": "assets/stone2_back.png"
+      "url": "assets/Stone2_Back.png"
     },
     {
       "name": "Diamond",
       "type": "image",
-      "url": "assets/diamond.png"
+      "url": "assets/Diamond.png"
     },
     {
       "name": "Diamond_Back",
       "type": "image",
-      "url": "assets/diamond_back.png"
+      "url": "assets/Diamond_Back.png"
     },
     {
       "name": "Kulou",
       "type": "image",
-      "url": "assets/kulou.png"
+      "url": "assets/Kulou.png"
     },
     {
       "name": "Kulou_Back",
       "type": "image",
-      "url": "assets/kulou_back.png"
+      "url": "assets/Kulou_Back.png"
     },
     {
       "name": "Gutou",
       "type": "image",
-      "url": "assets/gutou.png"
+      "url": "assets/Gutou.png"
     },
     {
       "name": "Gutou_Back",
       "type": "image",
-      "url": "assets/gutou_back.png"
+      "url": "assets/Gutou_Back.png"
     },
     {
       "name": "RandomBag",
       "type": "image",
-      "url": "assets/randomBag.png"
+      "url": "assets/RandomBag.png"
     },
     {
       "name": "RandomBag_Back",
       "type": "image",
-      "url": "assets/randomBag_back.png"
+      "url": "assets/RandomBag_Back.png"
     },
     {
       "name": "TNT",
@@ -118,52 +118,57 @@
     {
       "name": "TNT_Over",
       "type": "image",
-      "url": "assets/TNT_over.png"
+      "url": "assets/TNT_Over.png"
     },
     {
       "name": "TNT_Back",
       "type": "image",
-      "url": "assets/TNT_back.png"
+      "url": "assets/TNT_Back.png"
     },
     {
       "name": "Mouse",
       "type": "image",
-      "url": "assets/mouse.png"
+      "url": "assets/Mouse.png"
     },
     {
       "name": "Mouse_Back",
       "type": "image",
-      "url": "assets/mouse_back.png"
+      "url": "assets/Mouse_Back.png"
     },
     {
       "name": "MouseDiamond",
       "type": "image",
-      "url": "assets/mouseDiamond.png"
+      "url": "assets/MouseDiamond.png"
     },
     {
       "name": "MouseDiamond_Back",
       "type": "image",
-      "url": "assets/mouseDiamond_back.png"
+      "url": "assets/MouseDiamond_Back.png"
     },
     {
       "name": "Hero",
       "type": "image",
-      "url": "assets/hero.png"
+      "url": "assets/Hero.png"
     },
     {
       "name": "LevelPanel",
       "type": "image",
-      "url": "assets/level_panel.png"
+      "url": "assets/LevelPanel.png"
     },
     {
       "name": "BombBtn",
       "type": "image",
-      "url": "assets/bomb_btn.png"
+      "url": "assets/BombBtn.png"
     },
     {
       "name":"objsConfig",
       "type":"json",
       "url":"assets/objsConfig.json"
+    },
+    {
+      "name": "Level",
+      "type":"json",
+      "url":"assets/level.json"
     }
   ]
 }

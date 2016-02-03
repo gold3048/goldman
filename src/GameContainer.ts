@@ -8,6 +8,9 @@ module goldman {
 		/**游戏区域高*/
 		static thisH:number;
 
+		private levelArr:any = [];
+		private currLevel:number = 1;
+
 		private hookManager:HookManager;
 		private objManager:ObjManager;
 		private levelManager:LevelManager;
@@ -22,6 +25,11 @@ module goldman {
 			this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
 			GameContainer.thisW = this.stage.stageWidth;
 			GameContainer.thisH = this.stage.stageHeight;
+			this.getLevelData();
+		}
+
+		private getLevelData() {
+			this.levelArr = RES.getRes("Level");
 			this.createGameScene();
 		}
 
@@ -31,11 +39,12 @@ module goldman {
 			this.levelManager.addEventListener(LevelManager.LEVEL_MANAGER_EVENT, this.onLevelManagerEventHandler, this);
 			this.addChild(this.levelManager);
 			this.levelManager.createObjs();
-			this.levelManager.setScoreText(154);
+			this.levelManager.setGoalText(this.levelArr[this.currLevel - 1].goal);
 			this.objManager = new ObjManager();
 			this.objManager.addEventListener(ObjManager.OBJ_MANAGER_EVENT, this.onObjManagerEventHandler, this);
 			this.addChild(this.objManager);
-			this.objManager.createObjs();
+
+			this.objManager.createObjs(this.levelArr[this.currLevel - 1].objsArr);
 			this.hookManager = new HookManager();
 			this.hookManager.addEventListener(HookManager.HOOK_MANAGER_EVENT, this.onHookManagerEventHandler, this);
 			this.addChild(this.hookManager);
