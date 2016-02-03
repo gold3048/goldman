@@ -17,7 +17,6 @@ module goldman {
 		}
 
 		public createObjs(objDatas:any[]):void {
-			//var arr:string[] = ["Mouse", "MouseDiamond", "Gold1", "Gold2", "Gold3", "Stone1", "Stone2", "Diamond", "TNT"];
 			for (var i = 0; i < objDatas.length; i++) {
 				var objData = objDatas[i];
 				var ty:string = objData.name;
