@@ -10,6 +10,7 @@ module goldman {
 
 		private levelArr:any = [];
 		private currLevel:number = 1;
+		private money:number = 0;
 
 		private levelTimer:egret.Timer;
 		private LEVEL_TIME:number = 60;
@@ -34,7 +35,6 @@ module goldman {
 		private getLevelData() {
 			this.levelArr = RES.getRes("Level");
 			this.createGameScene();
-			this.createGameTimeInterval();
 		}
 
 		/**创建游戏场景*/
@@ -57,6 +57,8 @@ module goldman {
 
 			this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickStage, this);
 			this.addEventListener(egret.Event.ENTER_FRAME, this.onGameEnterFrame, this);
+
+			this.createGameTimeInterval();
 		}
 
 		private createGameTimeInterval():void {
@@ -73,7 +75,30 @@ module goldman {
 
 		private gameTimerComFunc(e:egret.TimerEvent):void {
 			this.levelManager.setTimeText(this.LEVEL_TIME - e.target.currentCount);
-			console.log('gameTimerComFunc');
+			this.nextLevel();
+		}
+
+		private nextLevel():void {
+			console.log("nextLevel");
+			this.destoryGameScene();
+			this.currLevel++;
+			this.createGameScene();
+		}
+
+		private destoryGameScene():void {
+			this.levelManager.destroy();
+			this.removeChild(this.levelManager);
+			this.objManager.destroy();
+			this.removeChild(this.objManager);
+			this.hookManager.destroy();
+			this.removeChild(this.hookManager);
+			this.stage.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.clickStage, this);
+			this.removeEventListener(egret.Event.ENTER_FRAME, this.onGameEnterFrame, this);
+			this.levelTimer.removeEventListener(egret.TimerEvent.TIMER, this.gameTimerFunc, this);
+			this.levelTimer.removeEventListener(egret.TimerEvent.TIMER_COMPLETE, this.gameTimerComFunc, this);
+			this.levelTimer.stop();
+			this.levelTimer = null;
+			this.money = 0;
 		}
 
 		private onGameEnterFrame(e:Event):void {
@@ -96,6 +121,12 @@ module goldman {
 			var data:any = (e.data);
 			switch (data.type) {
 				case HookManager.GO_COMPLETE_EVENT:
+					var catchObj:Obj = data.catchObj;
+					if(catchObj) {
+						console.log("obj.money " + catchObj.money);
+						this.money += catchObj.money;
+						this.levelManager.setScoreText(this.money);
+					}
 					break;
 				case HookManager.UPDATE_HOOK_POSITION_EVENT:
 					if (!this.hookManager.isBack) {
@@ -113,21 +144,17 @@ module goldman {
 				var isHit:boolean = GameUtil.hitTestObjByParentObj(hookBmp, obj, this);//检测钩子和物体是否相撞
 				if (isHit) {
 					if (obj.type == "TNT") {
-						me.hookManager.hitObject(0);
+						me.hookManager.setHookBackV(0);
 						me.objManager.removeObjsAtAreaByHitObj(obj);
 						obj.overObject();
 						setTimeout(function () {
-							me.hookManager.hitObject(obj.backV);
-							//todo 获取当前价格
-							console.log("obj.money " + obj.money);
-							me.hookManager.setBackHookType(obj.type);
+							me.hookManager.setHookBackV(obj.backV);
+							me.hookManager.setCatchObj(obj);
 							obj.destory();
 						}, 300);
 					} else {
-						me.hookManager.hitObject(obj.backV);
-						//todo 获取当前价格
-						console.log("obj.money " + obj.money);
-						me.hookManager.setBackHookType(obj.type);
+						me.hookManager.setHookBackV(obj.backV);
+						me.hookManager.setCatchObj(obj);
 						obj.destory();
 					}
 					break;

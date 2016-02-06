@@ -19,6 +19,14 @@ module goldman {
 			this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
 			this.objBmp = goldman.createBitmapByName(this._type);
 			this.addChild(this.objBmp);
+
+			var oMoneyTextField = new egret.TextField();
+			this.addChild(oMoneyTextField);
+			oMoneyTextField.textAlign = egret.HorizontalAlign.LEFT;
+			oMoneyTextField.textColor = 0x000000;
+			oMoneyTextField.width = 22;
+			oMoneyTextField.size = 18;
+			oMoneyTextField.text = this._money;
 		}
 
 		public overObject():void {
@@ -52,6 +60,5 @@ module goldman {
 			this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
 			removeAllchild(this);
 		}
-
 	}
 }

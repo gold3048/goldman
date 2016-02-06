@@ -52,6 +52,7 @@ module goldman {
 				}
 				for (var i in removeObjsArr) {
 					var o:Obj = removeObjsArr[i];
+					o.destory();
 					this.removeObj(o);
 				}
 			}
@@ -61,6 +62,15 @@ module goldman {
 			var currHookObj:Obj = this._objsArr.splice(this._objsArr.indexOf(obj), 1)[0];
 			this.removeChild(currHookObj);
 			return currHookObj;
+		}
+
+		public destroy():void {
+			for (var i in this._objsArr) {
+				var o:Obj = this._objsArr[i];
+				this.removeChild(o);
+				o.destory();
+			}
+			this._objsArr = [];
 		}
 	}
 }

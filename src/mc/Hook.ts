@@ -59,5 +59,16 @@ module goldman {
 		get hookBmp():egret.Bitmap {
 			return this._hookBmp;
 		}
+
+		public destroy():void {
+			this.removeChild(this.line);
+			this.line = null;
+			this.removeChild(this._hookBmp);
+			this._hookBmp = null;
+			if (this._backHookBmp && this.contains(this._backHookBmp)) {
+				this.removeChild(this._backHookBmp);
+				this._backHookBmp = null;
+			}
+		}
 	}
 }

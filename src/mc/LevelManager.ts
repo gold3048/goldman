@@ -91,5 +91,22 @@ module goldman {
 		public setTimeText(time:number):void {
 			this.timeTextField.text = time + "s";
 		}
+
+		public destroy():void {
+			this.removeChild(this.bgBmp);
+			this.removeChild(this.heroBmp);
+			this.removeChild(this.scoreTextField);
+			this.removeChild(this.goalTextField);
+			this.removeChild(this.timeTextField);
+			this.removeChild(this.levelPanelBmp);
+			this.removeChild(this.levelTextField);
+			this.bgBmp = null;
+			this.heroBmp = null;
+			this.scoreTextField = null;
+			this.goalTextField = null;
+			this.timeTextField = null;
+			this.levelPanelBmp = null;
+			this.levelTextField = null;
+		}
 	}
 }

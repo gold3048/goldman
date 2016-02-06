@@ -1,6 +1,7 @@
 module goldman {
 	export class HookManager extends egret.Sprite {
 		private hook:Hook;
+		public catchObj:Obj;
 
 		private BASE_ROTATION_MAX:number = 60;//钩子默认旋转角度
 		private LINE_HEIGHT_DEFAULT:number = 20;//绳子默认长度
@@ -100,25 +101,34 @@ module goldman {
 			}
 		}
 
-		public hitObject(backV:number):void {
+		public setHookBackV(backV:number):void {
 			this.isBack = true;
 			this.backV = backV;
-			//this.hook.setHookGrabStyle(true);
 		}
 
 		public goComplete():void {
+			this.dispatchEventWith(HookManager.HOOK_MANAGER_EVENT, false, {type: HookManager.GO_COMPLETE_EVENT, catchObj: this.catchObj});
 			this.hook.setBackHookType();
 			this.lineHeight = this.LINE_HEIGHT_DEFAULT;
 			this.hook.redrawHook(this.lineHeight);
 			this.isGo = false;
 			this.isBack = false;
 			this.startRotate();
-			this.dispatchEventWith(HookManager.HOOK_MANAGER_EVENT, false, {type: HookManager.GO_COMPLETE_EVENT});
+			this.catchObj = null;
 		}
 
-		public setBackHookType(typeStr:string):void {
+		public setCatchObj(obj:Obj):void {
+			this.catchObj = obj;
+			var typeStr:string = obj.type;
 			console.log("catchObj.type: " + typeStr);
 			this.hook.setBackHookType(typeStr);
+		}
+
+		public destroy():void {
+			this.hook.destroy();
+			this.removeChild(this.hook);
+			this.hook = null;
+			this.catchObj = null;
 		}
 	}
 }
