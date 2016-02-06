@@ -26,7 +26,7 @@ module goldman {
 			oMoneyTextField.textColor = 0x000000;
 			oMoneyTextField.width = 22;
 			oMoneyTextField.size = 18;
-			oMoneyTextField.text = this._money;
+			oMoneyTextField.text = this._money.toString();
 		}
 
 		public overObject():void {
