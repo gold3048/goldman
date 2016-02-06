@@ -4,8 +4,8 @@ module goldman {
 
 		private BASE_ROTATION_MAX:number = 60;//钩子默认旋转角度
 		private LINE_HEIGHT_DEFAULT:number = 20;//绳子默认长度
-		private GO_V_DEFAULT:number = 5;//钩子默认出击速度
-		private BACK_V_DEFAULT:number = 10;//钩子默认缩回速度
+		private GO_V_DEFAULT:number = 8;//钩子默认出击速度
+		private BACK_V_DEFAULT:number = 13;//钩子默认缩回速度
 
 		private direction:string;//当前方向
 		private lineHeight:number;//绳子当前长度
@@ -54,9 +54,9 @@ module goldman {
 
 		private onUpdateRotation():void {
 			if (this.direction == "left") {
-				this.hook.rotation++;
+				this.hook.rotation+=1.5;
 			} else if (this.direction == "right") {
-				this.hook.rotation--;
+				this.hook.rotation-=1.5;
 			}
 			if (this.direction != "stop") {
 				if (this.hook.rotation < -this.BASE_ROTATION_MAX) {

@@ -45,7 +45,7 @@ module goldman {
 						var oPoint:egret.Point = new egret.Point(o.x + o.width / 2, o.y + o.height / 2);
 						var hPoint:egret.Point = new egret.Point(hitObj.x + o.width / 2, hitObj.y + o.height / 2);
 						var distance:number = egret.Point.distance(oPoint, hPoint);
-						if (distance <= 150) {
+						if (distance <= 200) {
 							removeObjsArr.push(o);
 						}
 					}

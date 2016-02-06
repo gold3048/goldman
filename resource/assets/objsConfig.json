@@ -13,19 +13,11 @@
   },
   "Stone1": {
     "money": 2,
-    "backV": 5
+    "backV": 3
   },
   "Stone2": {
     "money": 4,
-    "backV": 4
-  },
-  "Stone3": {
-    "money": 6,
-    "backV": 3
-  },
-  "Stone4": {
-    "money": 8,
-    "backV": 1
+    "backV": 2
   },
   "Diamond": {
     "money": 900,

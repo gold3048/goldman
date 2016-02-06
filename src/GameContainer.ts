@@ -11,6 +11,9 @@ module goldman {
 		private levelArr:any = [];
 		private currLevel:number = 1;
 
+		private levelTimer:egret.Timer;
+		private LEVEL_TIME:number = 60;
+
 		private hookManager:HookManager;
 		private objManager:ObjManager;
 		private levelManager:LevelManager;
@@ -31,6 +34,7 @@ module goldman {
 		private getLevelData() {
 			this.levelArr = RES.getRes("Level");
 			this.createGameScene();
+			this.createGameTimeInterval();
 		}
 
 		/**创建游戏场景*/
@@ -53,6 +57,23 @@ module goldman {
 
 			this.stage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.clickStage, this);
 			this.addEventListener(egret.Event.ENTER_FRAME, this.onGameEnterFrame, this);
+		}
+
+		private createGameTimeInterval():void {
+			this.levelTimer = new egret.Timer(1000, this.LEVEL_TIME);
+			this.levelTimer.addEventListener(egret.TimerEvent.TIMER, this.gameTimerFunc, this);
+			this.levelTimer.addEventListener(egret.TimerEvent.TIMER_COMPLETE, this.gameTimerComFunc, this);
+			this.levelTimer.start();
+			this.levelManager.setTimeText(this.LEVEL_TIME);
+		}
+
+		private gameTimerFunc(e:egret.TimerEvent):void {
+			this.levelManager.setTimeText(this.LEVEL_TIME - e.target.currentCount);
+		}
+
+		private gameTimerComFunc(e:egret.TimerEvent):void {
+			this.levelManager.setTimeText(this.LEVEL_TIME - e.target.currentCount);
+			console.log('gameTimerComFunc');
 		}
 
 		private onGameEnterFrame(e:Event):void {
