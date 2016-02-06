@@ -92,6 +92,10 @@ module goldman {
 			this.timeTextField.text = time + "s";
 		}
 
+		public setLevelText(level:number):void {
+			this.levelTextField.text = level.toString();
+		}
+
 		public destroy():void {
 			this.removeChild(this.bgBmp);
 			this.removeChild(this.heroBmp);

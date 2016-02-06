@@ -44,7 +44,7 @@ module goldman {
 			this.line.graphics.lineTo(0, lineHeight);
 			this.line.graphics.endFill();
 			//绳子上的小点 模拟铁链
-			for (var i = 0; i <= lineHeight; i += 10) {
+			for (var i = 10; i <= lineHeight; i += 10) {
 				this.line.graphics.beginFill(0x3c3841);
 				this.line.graphics.drawCircle(0, i, 2);
 				this.line.graphics.endFill();

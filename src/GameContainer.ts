@@ -44,6 +44,7 @@ module goldman {
 			this.addChild(this.levelManager);
 			this.levelManager.createObjs();
 			this.levelManager.setGoalText(this.levelArr[this.currLevel - 1].goal);
+			this.levelManager.setLevelText(this.currLevel);
 			this.objManager = new ObjManager();
 			this.objManager.addEventListener(ObjManager.OBJ_MANAGER_EVENT, this.onObjManagerEventHandler, this);
 			this.addChild(this.objManager);
@@ -98,7 +99,6 @@ module goldman {
 			this.levelTimer.removeEventListener(egret.TimerEvent.TIMER_COMPLETE, this.gameTimerComFunc, this);
 			this.levelTimer.stop();
 			this.levelTimer = null;
-			this.money = 0;
 		}
 
 		private onGameEnterFrame(e:Event):void {
